@@ -21,7 +21,7 @@ function App() {
             <Route exact path="/" component={Signup} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/home" component={Home} />
-            <Route exact path="/searches" component={Searches} />
+            <Route exact path="/saved" component={Searches} />
             <Route exact path="/userPosts" component={UserPosts} />
           </Switch>
           <UpBtn />

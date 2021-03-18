@@ -64,8 +64,8 @@ const Navbar = ({ signout }) => {
             >
               Home
             </Link>
-            <Link className="nav-link" to="/searches">
-              Searches
+            <Link className="nav-link" to="/saved">
+              Saved
             </Link>
             <Link className="nav-link" to="/userPosts">
               My Posts
