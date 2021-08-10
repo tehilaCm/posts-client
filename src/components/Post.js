@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { AiFillStar } from "react-icons/ai";
 
 import actions from "../actions";
-import { savePost, unsavePost } from "../api";
+import { savePost } from "../api";
 import { useAuth } from "../contexts/AuthContext";
 
 import toast from "react-hot-toast";
@@ -93,11 +93,6 @@ const mapDispatchToProps = (dispatch) => {
     },
     unsavePost: async (post, email) => {
       dispatch(actions.unsavePost(post, email));
-      try {
-        await unsavePost({ post, email });
-      } catch (error) {
-        console.log(error);
-      }
     },
   };
 };
