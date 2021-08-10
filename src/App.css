@@ -49,6 +49,20 @@ nav {
   border: 1.5px gray solid;
   padding: 2rem;
   max-width: 30rem;
+  min-width: 300px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  height: fit-content;
+  margin-top: 110px;
+}
+
+@media (min-width: 1500px) {
+  .auth-form {
+    margin: auto;
+  }
 }
 
 .input-container {
@@ -93,7 +107,7 @@ nav {
 }
 
 .card-body > svg {
-  color: yellow;
+  color: #ffec07;
   margin: 10px 0;
 }
 
