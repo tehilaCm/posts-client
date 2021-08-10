@@ -18,6 +18,7 @@ export const signIn = (data) => API.post("/user/signIn", data);
 export const signUp = (data) => API.post("/user/signUp", data);
 
 export const savePost = (data) => API.post("/user/savePost", data);
+export const unsavePost = (data) => API.post("/user/unsavePost", data);
 export const getSearches = (email) => API.get(`/user/getSearches/${email}`);
 
 export const getPosts = (email) => API.get(`/post/getPosts/${email}`);
