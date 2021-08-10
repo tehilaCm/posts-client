@@ -12,6 +12,9 @@ const posts = {
   savePost(state, action) {
     state.posts.push(action.payload);
   },
+  unsavePost(state, action) {
+    state.posts = state.posts.filter((item) => item.id != action.payload.id);
+  },
 };
 
 const reducer = produce((state, action) => {

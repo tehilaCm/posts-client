@@ -13,7 +13,7 @@ const Searches = ({ searches, getSearches }) => {
   useEffect(() => {
     if (currentUser) getSearches(currentUser.email);
   }, []);
-  
+
   if (searches.length === 0) {
     return (
       <div>

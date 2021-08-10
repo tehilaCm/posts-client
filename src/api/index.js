@@ -1,6 +1,8 @@
 import axios from "axios";
 
-const API = axios.create({ baseURL: "http://localhost:4000" });
+const API = axios.create({
+  baseURL: "https://posts-server-side.herokuapp.com/",
+});
 
 API.interceptors.request.use((req) => {
   if (localStorage.getItem("profile")) {
@@ -23,4 +25,5 @@ export const post = (email, formData) =>
   API.post(`/post/post/${email}`, formData);
 export const updatePost = (email, id, formData) =>
   API.patch(`/post/updatePost/${email}/${id}`, formData);
-export const deletePost = (email, id) => API.delete(`/post/deletePost/${email}/${id}`);
+export const deletePost = (email, id) =>
+  API.delete(`/post/deletePost/${email}/${id}`);

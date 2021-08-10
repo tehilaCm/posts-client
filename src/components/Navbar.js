@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { connect } from "react-redux";
+
+import $ from "jquery";
 
 import { VscSignOut } from "react-icons/vsc";
 
@@ -15,6 +17,25 @@ const Navbar = ({ signout }) => {
   const { currentUser, fb_logout } = useAuth();
 
   const history = useHistory();
+
+  useEffect(() => {
+    $(".navbar-toggler").click(function () {
+      $("#navbarNav").toggle("slow");
+    });
+
+    $(".nav-link").click(function () {
+      closeNav();
+    });
+
+    $(".navbar-brand").click(function () {
+      closeNav();
+    });
+  }, []);
+
+  const closeNav = () => {
+    let display = $(".collapse").css("display");
+    if (display !== "none") $("#navbarNav").hide("slow");
+  };
 
   async function handleLogout() {
     setError("");
@@ -48,14 +69,12 @@ const Navbar = ({ signout }) => {
           className="navbar-toggler"
           type="button"
           data-bs-toggle="collapse"
-          data-bs-target="#navbarNavAltMarkup"
-          aria-controls="navbarNavAltMarkup"
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
           <span className="navbar-toggler-icon"></span>
         </button>
-        <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div className="collapse navbar-collapse" id="navbarNav">
           <div className="navbar-nav">
             <Link
               className="nav-link active linke"

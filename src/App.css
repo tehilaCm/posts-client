@@ -92,6 +92,11 @@ nav {
   margin-bottom: 2rem;
 }
 
+.card-body > svg {
+  color: yellow;
+  margin: 10px 0;
+}
+
 .header {
   text-align: center;
   margin: 2rem;

@@ -43,7 +43,7 @@ const UserPosts = ({ userPosts, setUserPosts }) => {
           </div>
           <div className="col-md-7 sm-12">
             {userPosts.length === 0 && (
-              <h1 className="header">You don't have posts</h1>
+              <h1 className="header">You don't have any posts</h1>
             )}
             <div className="posts-container">
               {userPosts.map((item) => (
