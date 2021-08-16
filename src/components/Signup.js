@@ -1,10 +1,11 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { BiHide } from "react-icons/bi";
 import { GrView } from "react-icons/gr";
 import { Link, useHistory } from "react-router-dom";
 import { connect } from "react-redux";
 
 import Alert from "./Alert";
+import LoginSpinner from "./LoginSpinner";
 
 import actions from "../actions";
 import { signUp } from "../api";
@@ -19,9 +20,13 @@ const Signup = ({ auth }) => {
   const passwordRef = useRef(null);
   const confirmPasswordRef = useRef(null);
 
-  const { fb_signup } = useAuth();
+  const { fb_signup, fb_logout } = useAuth();
 
   const history = useHistory();
+
+  useEffect(async () => {
+    await fb_logout();
+  }, []);
 
   const switchPasswordVisibiliity = () => {
     setIsShowPassword(!isShowPassword);
@@ -29,9 +34,17 @@ const Signup = ({ auth }) => {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    if (passwordRef.current.value !== confirmPasswordRef.current.value) {
+    if (!emailRef.current.value) return setError("Please enter you'r email");
+
+    if (!passwordRef.current.value)
+      return setError("Please enter you'r password");
+
+    if (passwordRef.current.value.length < 6)
+      return setError("Password must contain at least 6 characters");
+
+    if (passwordRef.current.value !== confirmPasswordRef.current.value)
       return setError("Passwords do not match");
-    }
+
     try {
       setError("");
       setLoading(true);
@@ -45,15 +58,13 @@ const Signup = ({ auth }) => {
       history.push("/home");
     } catch (error) {
       setLoading(false);
-      if (passwordRef.current.value.length < 6)
-        setError("Password must contain at least 6 characters");
-      else setError("Faild to create an account");
+      setError("Faild to create an account");
     }
   }
 
   return (
     <div>
-      <form className="auth-form" onSubmit={handleSubmit}>
+      <form className="auth-form signup-form" onSubmit={handleSubmit}>
         <h3 className="log-form-header">Sign up</h3>
         {error && <Alert message={error} />}
         <div className="mb-3">
@@ -108,11 +119,14 @@ const Signup = ({ auth }) => {
           />
         </div>
 
-        <button className="btn theme-color-btn" disabled={loading}>
-          Sign Up
+        <button className="btn theme-color-btn sign" disabled={loading}>
+          {loading ? <LoginSpinner /> : "Sign Up"}
         </button>
         <p className="auth-form-change-mode">
-          Already have an account? <Link to="/login">Log in</Link>
+          Already have an account?{" "}
+          <Link to="/login" className="sign-link">
+            Log in
+          </Link>
         </p>
       </form>
     </div>

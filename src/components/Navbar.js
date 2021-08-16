@@ -18,23 +18,9 @@ const Navbar = ({ signout }) => {
 
   const history = useHistory();
 
-  useEffect(() => {
-    $(".navbar-toggler").click(function () {
-      $("#navbarNav").toggle("slow");
-    });
-
-    $(".nav-link").click(function () {
-      closeNav();
-    });
-
-    $(".navbar-brand").click(function () {
-      closeNav();
-    });
-  }, []);
-
   const closeNav = () => {
     let display = $(".collapse").css("display");
-    if (display !== "none") $("#navbarNav").hide("slow");
+    if (display === "block") $("#navbarNav").hide("slow");
   };
 
   async function handleLogout() {
@@ -60,6 +46,7 @@ const Navbar = ({ signout }) => {
               className="navbar-brand"
               style={{ color: "rgb(132, 11, 156)" }}
               to="/home"
+              onClick={() => closeNav()}
             >
               Posts
             </Link>
@@ -71,6 +58,7 @@ const Navbar = ({ signout }) => {
           data-bs-toggle="collapse"
           aria-expanded="false"
           aria-label="Toggle navigation"
+          onClick={() => $("#navbarNav").toggle("slow")}
         >
           <span className="navbar-toggler-icon"></span>
         </button>
@@ -80,13 +68,18 @@ const Navbar = ({ signout }) => {
               className="nav-link active linke"
               aria-current="page"
               to="/home"
+              onClick={() => closeNav()}
             >
               Home
             </Link>
-            <Link className="nav-link" to="/saved">
+            <Link className="nav-link" to="/saved" onClick={() => closeNav()}>
               Saved
             </Link>
-            <Link className="nav-link" to="/userPosts">
+            <Link
+              className="nav-link"
+              to="/userPosts"
+              onClick={() => closeNav()}
+            >
               My Posts
             </Link>
           </div>

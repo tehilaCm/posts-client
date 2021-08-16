@@ -7,7 +7,7 @@ import { deletePost } from "../api";
 import actions from "../actions";
 import { useAuth } from "../contexts/AuthContext";
 
-const UserPost = ({ item, deleteUserPost, posts, setPost }) => {
+const UserPost = ({ item, deleteUserPost, setPost }) => {
   const { currentUser } = useAuth();
 
   const handleEdit = () => {
@@ -26,6 +26,7 @@ const UserPost = ({ item, deleteUserPost, posts, setPost }) => {
   return (
     <div className="card post">
       <div className="card-body">
+        <p className="creation-time">Created: {item.dateCreated + " " + item.timeCreated}</p>
         <h5 className="card-title">{item.title}</h5>
         <p className="card-text card-body">{item.body}</p>
         <div className="container">
@@ -43,16 +44,10 @@ const UserPost = ({ item, deleteUserPost, posts, setPost }) => {
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    posts: state.userPosts.posts,
-  };
-};
-
 const mapDispatchToProps = (dispatch) => {
   return {
     deleteUserPost: (id) => dispatch(actions.deleteUserPost(id)),
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(UserPost);
+export default connect(null, mapDispatchToProps)(UserPost);

@@ -10,6 +10,7 @@ const auth = {
   auth(state, action) {
     localStorage.setItem("profile", JSON.stringify(action?.payload));
     state.authData = action?.data;
+    state.user = JSON.parse(localStorage.getItem("profile"));
   },
   logout(state, action) {
     localStorage.clear();

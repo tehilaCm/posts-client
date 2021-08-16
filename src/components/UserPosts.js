@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 
+import { ImPencil2 } from "react-icons/im";
+
 import UserPost from "./UserPost";
 import PostForm from "./PostForm";
 import Spinner from "./Spinner";
@@ -15,22 +17,24 @@ const UserPosts = ({ userPosts, setUserPosts }) => {
 
   const { currentUser } = useAuth();
 
+  useEffect(() => {
+    setIsLoading(true);
+    setPosts();
+  }, []);
+
   const setPosts = async () => {
     try {
       if (currentUser) {
         const { data } = await getPosts(currentUser.email);
         const { posts } = data;
         setUserPosts(posts);
+        setIsLoading(false);
       }
     } catch (error) {
+      setIsLoading(false);
       console.log(error);
     }
   };
-
-  useEffect(() => {
-    setPosts();
-    setIsLoading(false);
-  }, []);
 
   if (isLoading) return <Spinner />;
 
@@ -43,7 +47,10 @@ const UserPosts = ({ userPosts, setUserPosts }) => {
           </div>
           <div className="col-md-7 sm-12">
             {userPosts.length === 0 && (
-              <h1 className="header">You don't have any posts</h1>
+              <div style={{ display: "grid", flexWrap: "wrap" }}>
+                <h1 className="header">You don't have any posts</h1>
+                <ImPencil2 className="pancil" />
+              </div>
             )}
             <div className="posts-container">
               {userPosts.map((item) => (

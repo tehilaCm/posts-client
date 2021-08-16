@@ -17,7 +17,7 @@ const Searches = ({ searches, getSearches }) => {
   if (searches.length === 0) {
     return (
       <div>
-        <h1 className="header">You don't have any saved posts</h1>;
+        <h1 className="header">You don't have any saved posts</h1>
       </div>
     );
   }

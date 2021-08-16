@@ -18,6 +18,10 @@ nav {
   background-color: white;
 }
 
+.sign {
+  min-width: 82px;
+}
+
 .theme-color-h {
   color: rgb(132, 11, 156);
 }
@@ -44,25 +48,30 @@ nav {
 .auth-form {
   text-align: center;
   width: 50%;
-  margin: 2rem auto;
   border-radius: 10%;
   border: 1.5px gray solid;
   padding: 2rem;
   max-width: 30rem;
-  min-width: 300px;
+  min-width: 330px;
   position: absolute;
   top: 0;
   right: 0;
   left: 0;
   bottom: 0;
   height: fit-content;
-  margin-top: 110px;
+  margin: auto;
 }
 
-@media (min-width: 1500px) {
-  .auth-form {
-    margin: auto;
-  }
+.signup-form {
+  max-height: 520px;
+}
+
+.signin-form {
+  max-height: 440px;
+}
+
+.sign-link {
+  white-space: nowrap;
 }
 
 .input-container {
@@ -117,6 +126,13 @@ nav {
   color: rgb(132, 11, 156);
 }
 
+.pancil {
+  margin: 10% auto;
+  color: rgb(132, 11, 156);
+  width: 100px;
+  height: 100px;
+}
+
 .spinner {
   color: black;
   position: absolute;
@@ -139,6 +155,11 @@ form {
 
 .center {
   text-align: center;
+}
+
+.creation-time {
+  font-size: 14px;
+  color: #abaaaa;
 }
 
 .edit-icon,
